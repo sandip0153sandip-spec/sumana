@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday 💗🌻</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+        color: #4b3450;
+        overflow-x: hidden;
+        background:
+          radial-gradient(circle at 10% 10%, #ffd5e7, transparent 27%),
+          radial-gradient(circle at 90% 20%, #cfeaff, transparent 28%),
+          linear-gradient(145deg, #fff0f7, #edf8ff 55%, #fff4df);
+      }
+      .page {
+        min-height: 100vh;
+        padding: 22px 14px 40px;
+        display: flex;
+        justify-content: center;
+      }
+      .card {
+        width: min(100%, 480px);
+        padding: 28px 20px 22px;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.82);
+        border: 2px solid white;
+        border-radius: 30px;
+        box-shadow: 0 25px 70px #5c375c33;
+        backdrop-filter: blur(12px);
+      }
+      .top {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+      }
+      .flower {
+        font-size: 34px;
+        animation: sway 2.4s infinite;
+      }
+      .heart {
+        color: #ff5f9e;
+        font-size: 27px;
+        animation: beat 1.2s infinite;
+      }
+      @keyframes sway {
+        50% {
+          transform: rotate(8deg) translateY(-3px);
+        }
+      }
+      @keyframes beat {
+        50% {
+          transform: scale(1.25);
+        }
+      }
+      .mini {
+        font-size: 13px;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        color: #2569a8;
+        font-weight: 700;
+      }
+      h1 {
+        margin: 4px 0;
+        font:
+          bold clamp(40px, 11vw, 58px) Georgia,
+          serif;
+        background: linear-gradient(90deg, #ed4d91, #477fda);
+        color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+      }
+      .name {
+        font-size: 18px;
+        font-weight: bold;
+        color: #6b4c73;
+      }
+      .photo {
+        width: min(88vw, 310px);
+        margin: 22px auto 18px;
+        padding: 8px;
+        border-radius: 24px;
+        background: linear-gradient(135deg, #ff76ab, #75b8f2, #ffc94f);
+        box-shadow: 0 13px 35px #4a507d3b;
+        transform: rotate(-1deg);
+        position: relative;
+      }
+      .photo img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 4/5;
+        object-fit: cover;
+        border-radius: 18px;
+        border: 3px solid white;
+      }
+      .photo span {
+        position: absolute;
+        right: -10px;
+        bottom: -14px;
+        width: 48px;
+        height: 48px;
+        display: grid;
+        place-items: center;
+        background: white;
+        border-radius: 50%;
+        color: #ff5f9e;
+        font-size: 25px;
+        box-shadow: 0 6px 20px #0002;
+      }
+      .intro {
+        font-size: 16px;
+        line-height: 1.65;
+        max-width: 380px;
+        margin: 12px auto 19px;
+      }
+      button {
+        width: 100%;
+        border: 0;
+        border-radius: 18px;
+        padding: 15px 17px;
+        font: inherit;
+        font-weight: 800;
+        cursor: pointer;
+      }
+      .open {
+        color: white;
+        background: linear-gradient(100deg, #f24f93, #4f8fe0);
+        box-shadow: 0 9px 22px #e83e7d40;
+      }
+      .surprise {
+        margin-top: 12px;
+        color: #3e6790;
+        background: #edf7ff;
+        border: 1px solid #cce8ff;
+      }
+      .message {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: 0.8s ease;
+      }
+      .message.opened {
+        max-height: 900px;
+        opacity: 1;
+        margin-top: 18px;
+      }
+      .inner {
+        padding: 22px 17px;
+        border-radius: 24px;
+        background: linear-gradient(145deg, #fff2f8, #edf7ff);
+        border: 1px solid #f4c5da;
+      }
+      .inner h2 {
+        margin: 10px 0 14px;
+        font:
+          bold 27px Georgia,
+          serif;
+        color: #e34889;
+      }
+      .inner p {
+        font-size: 15.5px;
+        line-height: 1.7;
+      }
+      .love {
+        padding: 12px;
+        border-radius: 14px;
+        background: #ffffffb8;
+        color: #3776b4;
+        font-weight: bold;
+      }
+      .sign {
+        margin-top: 20px;
+        line-height: 1.6;
+      }
+      .sign strong {
+        color: #df4c88;
+      }
+      .footer {
+        font-size: 12px;
+        color: #8b718a;
+        margin-top: 20px;
+      }
+      .spark {
+        position: fixed;
+        pointer-events: none;
+        font-size: 22px;
+        animation: fly 0.9s ease-out forwards;
+        z-index: 5;
+      }
+      @keyframes fly {
+        to {
+          transform: translate(var(--x), var(--y)) scale(1.4);
+          opacity: 0;
+        }
+      }
+      .toast {
+        position: fixed;
+        left: 50%;
+        bottom: 24px;
+        transform: translate(-50%, 100px);
+        width: 90%;
+        max-width: 380px;
+        padding: 13px 17px;
+        border-radius: 50px;
+        text-align: center;
+        background: #44354cf5;
+        color: white;
+        font-weight: bold;
+        z-index: 10;
+        transition: 0.35s;
+      }
+      .toast.show {
+        transform: translate(-50%, 0);
+      }
+
+      /* 🌻 Sunflower background */
+      body {
+        background:
+          linear-gradient(rgba(255, 248, 225, 0.72), rgba(255, 244, 214, 0.78)),
+          url("https://images.unsplash.com/photo-1597848212624-a19eb35e2651?auto=format&fit=crop&w=1600&q=80")
+            center/cover fixed no-repeat;
+      }
+
+      .page {
+        position: relative;
+      }
+
+      .page::before,
+      .page::after {
+        content: "🌻";
+        position: fixed;
+        font-size: clamp(70px, 18vw, 150px);
+        opacity: 0.18;
+        pointer-events: none;
+        z-index: 0;
+        animation: floatFlower 5s ease-in-out infinite;
+      }
+
+      .page::before {
+        left: -25px;
+        bottom: 5%;
+      }
+
+      .page::after {
+        right: -25px;
+        top: 8%;
+        animation-delay: 1.5s;
+      }
+
+      .card {
+        position: relative;
+        z-index: 1;
+      }
+
+      @keyframes floatFlower {
+        50% {
+          transform: translateY(-15px) rotate(7deg);
+        }
+      }
+
+      /* 📸 Multiple-image carousel */
+      .carousel {
+        width: min(88vw, 310px);
+        margin: 22px auto 18px;
+        position: relative;
+      }
+
+      .carousel-window {
+        overflow: hidden;
+        border-radius: 24px;
+        padding: 8px;
+        background: linear-gradient(135deg, #ff76ab, #75b8f2, #ffc94f);
+        box-shadow: 0 13px 35px #4a507d3b;
+        transform: rotate(-1deg);
+      }
+
+      .carousel-track {
+        display: flex;
+        transition: transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
+      }
+
+      .carousel-slide {
+        min-width: 100%;
+        position: relative;
+      }
+
+      .carousel-slide img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 4/5;
+        object-fit: cover;
+        border-radius: 18px;
+        border: 3px solid white;
+      }
+
+      /* 💗 Love badge at the bottom */
+      .love-badge {
+        position: absolute;
+        right: 12px;
+        bottom: 12px;
+        width: 48px;
+        height: 48px;
+        border: 3px solid white;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: #ffffffee;
+        color: #ff4f98;
+        font-size: 25px;
+        box-shadow: 0 6px 18px #0003;
+        animation: beat 1.2s infinite;
+      }
+
+      /* 📌 Pin in the top-left */
+      .surprise-pin {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        z-index: 4;
+        width: 52px;
+        height: 58px;
+        border: 0;
+        padding: 0;
+        border-radius: 0 0 24px 24px;
+        background: transparent;
+        cursor: pointer;
+        font-size: 31px;
+        filter: drop-shadow(0 4px 5px #0004);
+        transform: rotate(-8deg);
+      }
+
+      .surprise-pin:hover,
+      .surprise-pin:focus {
+        transform: rotate(-8deg) scale(1.12);
+        outline: none;
+      }
+
+      .carousel-controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        margin-top: 10px;
+      }
+
+      .carousel-btn {
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        border-radius: 50%;
+        color: #df4c88;
+        background: #fff;
+        border: 2px solid #ffd1e2;
+        box-shadow: 0 5px 14px #0002;
+      }
+
+      .dots {
+        display: flex;
+        gap: 7px;
+      }
+
+      .dot {
+        width: 9px;
+        height: 9px;
+        padding: 0;
+        border-radius: 50%;
+        background: #d8c4d3;
+      }
+
+      .dot.active {
+        width: 23px;
+        border-radius: 10px;
+        background: #ff5f9e;
+      }
+
+      /* 📌 Surprise modal */
+      .surprise-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 20;
+        display: grid;
+        place-items: center;
+        padding: 22px;
+        background: #34203499;
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s ease;
+      }
+
+      .surprise-modal.show {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .surprise-card {
+        width: min(100%, 390px);
+        position: relative;
+        padding: 28px 22px;
+        text-align: center;
+        border-radius: 28px;
+        background: linear-gradient(145deg, #fff7fb, #fff8df);
+        border: 3px solid white;
+        box-shadow: 0 25px 80px #25152566;
+        transform: translateY(20px) scale(0.95);
+        transition: 0.35s ease;
+      }
+
+      .surprise-modal.show .surprise-card {
+        transform: translateY(0) scale(1);
+      }
+
+      .surprise-card h2 {
+        margin: 8px 0 12px;
+        font:
+          bold 29px Georgia,
+          serif;
+        color: #df4c88;
+      }
+
+      .surprise-card p {
+        line-height: 1.7;
+        font-size: 16px;
+      }
+
+      .meeting-time {
+        margin: 18px 0;
+        padding: 16px;
+        border-radius: 18px;
+        background: #fff0a8;
+        color: #704c19;
+        font-weight: 800;
+        font-size: 18px;
+      }
+
+      .close-surprise {
+        width: auto;
+        padding: 10px 22px;
+        color: white;
+        background: linear-gradient(100deg, #f24f93, #4f8fe0);
+      }
+      /* 🌻 Small sunflowers inside the card */
+      .card::before,
+      .card::after {
+        content: "🌻";
+        position: absolute;
+        font-size: 28px;
+        opacity: 0.35;
+        pointer-events: none;
+        z-index: 0;
+        animation: smallSunflowerFloat 4s ease-in-out infinite;
+      }
+
+      .card::before {
+        top: 85px;
+        left: 10px;
+        transform: rotate(-15deg);
+      }
+
+      .card::after {
+        top: 150px;
+        right: 10px;
+        transform: rotate(15deg);
+        animation-delay: 1.5s;
+      }
+
+      @keyframes smallSunflowerFloat {
+        50% {
+          transform: translateY(-5px) rotate(8deg);
+        }
+      }
+
+      /* Keep card content above the flowers */
+      .card > * {
+        position: relative;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <section class="card">
+        <div class="top">
+          <span class="flower">🌻</span><span class="heart">♥</span
+          ><span class="flower">🌻</span>
+        </div>
+        <div class="mini">A little birthday surprise for you</div>
+        <h1>Happy Birthday</h1>
+        <div class="name">My Special Person 💗</div>
+
+        <div class="carousel">
+          <button
+            class="surprise-pin"
+            id="surprisePin"
+            aria-label="Open little surprise"
+          >
+            📌
+          </button>
+
+          <div class="carousel-window">
+            <div class="carousel-track" id="carouselTrack">
+              <!-- Replace these image paths with your own photos -->
+              <div class="carousel-slide">
+                <img src="sum55.jpeg" alt="Special memory 1" />
+                <span class="love-badge">♥</span>
+              </div>
+              <div class="carousel-slide">
+                <img src="sum4.jpeg" alt="Special memory 2" />
+                <span class="love-badge">♥</span>
+              </div>
+              <div class="carousel-slide">
+                <img src="sum6.png" alt="Special memory 2" />
+                <span class="love-badge">♥</span>
+              </div>
+              <div class="carousel-slide">
+                <img src="sum7.png" alt="Special memory 2" />
+                <span class="love-badge">♥</span>
+              </div>
+              <!-- <div class="carousel-slide">
+                <img src="sum3.jpeg" alt="Special memory 3" />
+                <span class="love-badge">♥</span>
+              </div> -->
+              <div class="carousel-slide">
+                <img src="sum2.jpeg" alt="Special memory 4" />
+                <span class="love-badge">♥</span>
+              </div>
+              <div class="carousel-slide">
+                <img src="sum1.jpeg" alt="Special memory 5" />
+                <span class="love-badge">♥</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-controls">
+            <button
+              class="carousel-btn"
+              id="prevSlide"
+              aria-label="Previous image"
+            >
+              ‹
+            </button>
+            <div class="dots" id="dots"></div>
+            <button class="carousel-btn" id="nextSlide" aria-label="Next image">
+              ›
+            </button>
+          </div>
+        </div>
+
+        <p class="intro">
+          Today is a little more beautiful because it is the day someone truly
+          special came into this world. 🌸
+        </p>
+
+        <button class="open" id="open">Open Your Birthday Message 💌</button>
+
+        <div class="message" id="message">
+          <div class="inner">
+            <div>🌻 🌻 🌻</div>
+            <h2>For You, With Love 💙💗</h2>
+            <p>
+              I hope your birthday brings you all the happiness, smiles and
+              beautiful moments you deserve.
+            </p>
+            <p>
+              May your days be filled with little reasons to smile, big dreams
+              that come true, and people who always make your heart feel warm.
+              ✨
+            </p>
+            <p>
+              Keep shining, keep smiling, and never forget how wonderfully
+              special you are. 🌻
+            </p>
+            <div class="love">You deserve all the love in the world. 💗</div>
+            <div class="sign">
+              With lots of love,<br /><strong
+                >Someone who cares about you ♥</strong
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="footer">
+          <p>Tap the 📌 pin for a little surprise 💗🌻</p>
+          <br />
+          made with 💗 design by ;-)
+        </div>
+      </section>
+    </div>
+
+    <div
+      class="surprise-modal"
+      id="surpriseModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="surpriseTitle"
+    >
+      <div class="surprise-card">
+        <div style="font-size: 42px">🌻💗📌</div>
+        <h2 id="surpriseTitle">A Little Secret ✨</h2>
+        <p>Don't tell anyone... this is just for you. 💗</p>
+
+        <div class="meeting-time">
+          Today<br />
+          Meet me at VIP<br />
+          <strong>6:30 PM – 7:00 PM</strong>
+        </div>
+
+        <p>Be there... I have a little surprise waiting for you. 🌻</p>
+        <button class="close-surprise" id="closeSurprise">
+          Okay, I'll be there 💗
+        </button>
+      </div>
+    </div>
+
+    <div class="toast" id="toast">You are loved more than you know. 💗🌻</div>
+
+    <script>
+      // 💌 Birthday message
+      const open = document.getElementById("open");
+      const message = document.getElementById("message");
+
+      open.onclick = () => {
+        message.classList.toggle("opened");
+        open.textContent = message.classList.contains("opened")
+          ? "Close Message 💌"
+          : "Open Your Birthday Message 💌";
+
+        if (message.classList.contains("opened")) makeSparkles(18);
+      };
+
+      // 📸 Carousel
+      const track = document.getElementById("carouselTrack");
+      const slides = [...document.querySelectorAll(".carousel-slide")];
+      const dots = document.getElementById("dots");
+      const prevSlide = document.getElementById("prevSlide");
+      const nextSlide = document.getElementById("nextSlide");
+
+      let currentSlide = 0;
+
+      slides.forEach((_, index) => {
+        const dot = document.createElement("button");
+        dot.className = "dot" + (index === 0 ? " active" : "");
+        dot.setAttribute("aria-label", `Go to image ${index + 1}`);
+        dot.onclick = () => goToSlide(index);
+        dots.appendChild(dot);
+      });
+
+      function goToSlide(index) {
+        currentSlide = (index + slides.length) % slides.length;
+        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+        document.querySelectorAll(".dot").forEach((dot, i) => {
+          dot.classList.toggle("active", i === currentSlide);
+        });
+      }
+
+      prevSlide.onclick = () => goToSlide(currentSlide - 1);
+      nextSlide.onclick = () => goToSlide(currentSlide + 1);
+
+      // Swipe support for mobile
+      let touchStartX = 0;
+
+      track.addEventListener(
+        "touchstart",
+        (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+        },
+        { passive: true },
+      );
+
+      track.addEventListener(
+        "touchend",
+        (e) => {
+          const touchEndX = e.changedTouches[0].screenX;
+          const distance = touchEndX - touchStartX;
+
+          if (Math.abs(distance) > 45) {
+            distance < 0
+              ? goToSlide(currentSlide + 1)
+              : goToSlide(currentSlide - 1);
+          }
+        },
+        { passive: true },
+      );
+
+      // 📌 Pin opens the little surprise
+      const surprisePin = document.getElementById("surprisePin");
+      const surpriseModal = document.getElementById("surpriseModal");
+      const closeSurprise = document.getElementById("closeSurprise");
+
+      surprisePin.onclick = (e) => {
+        makeSparkles(28, e.clientX, e.clientY);
+        surpriseModal.classList.add("show");
+      };
+
+      closeSurprise.onclick = () => {
+        surpriseModal.classList.remove("show");
+      };
+
+      surpriseModal.onclick = (e) => {
+        if (e.target === surpriseModal) {
+          surpriseModal.classList.remove("show");
+        }
+      };
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          surpriseModal.classList.remove("show");
+        }
+      });
+
+      // ✨ Sparkle effect
+      function makeSparkles(n, x = innerWidth / 2, y = innerHeight / 2) {
+        const s = ["💗", "💙", "🌻", "✨", "♥"];
+
+        for (let i = 0; i < n; i++) {
+          const a = document.createElement("span");
+          a.className = "spark";
+          a.textContent = s[Math.floor(Math.random() * s.length)];
+          a.style.left = x + "px";
+          a.style.top = y + "px";
+          a.style.setProperty("--x", (Math.random() - 0.5) * 260 + "px");
+          a.style.setProperty("--y", (Math.random() - 0.5) * 300 + "px");
+          document.body.appendChild(a);
+          setTimeout(() => a.remove(), 950);
+        }
+      }
+    </script>
+  </body>
+</html>
